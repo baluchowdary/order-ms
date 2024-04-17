@@ -1,6 +1,8 @@
-Kafka version - 2.8.2
-springboot 3.x
-java 17
+==> springboot 3.x
+==> Kafka version - 2.8.2
+==> java 17
+==> Oracle11g
+==> Maven3.8
 
 ==> update server.peroperties & zookeeper.properties files log paths with kafka directory path
 ==>To start Zookeeper:
@@ -73,4 +75,8 @@ http://localhost:8083/api/addItems
 ![image](https://github.com/baluchowdary/order-ms/assets/12624930/c5db2830-53c9-4701-98fe-19e898ffdea6)
 
 ![image](https://github.com/baluchowdary/order-ms/assets/12624930/e26d4613-9ce8-489b-a6f4-a1cf4b3d22f9)
+
+=====> Branch's
+==> master -> Initial project setup
+==> Integrated with Oracle11g
 
