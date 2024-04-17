@@ -1,7 +1,11 @@
 ==> springboot 3.x
+
 ==> Kafka version - 2.8.2
+
 ==> java 17
+
 ==> Oracle11g
+
 ==> Maven3.8
 
 ==> update server.peroperties & zookeeper.properties files log paths with kafka directory path
