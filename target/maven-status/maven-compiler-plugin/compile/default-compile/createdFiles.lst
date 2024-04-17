@@ -1,0 +1,7 @@
+com\kollu\order\ms\service\ReverseOrder.class
+com\kollu\order\controller\OrderController.class
+com\kollu\order\dto\OrderEvent.class
+com\kollu\order\OrderMsApplication.class
+com\kollu\order\dto\CustomerOrder.class
+com\kollu\order\entity\Order.class
+com\kollu\order\entity\OrderRepository.class
