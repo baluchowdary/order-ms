@@ -1,0 +1,19 @@
+<h2>Order List</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Order_ITEM</th>
+            <th>Order_Quantity</th>
+            <th>Order_Amount</th>
+            <th>Order_Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor = "let order of orders">
+            <td>{{order.item}}</td>
+            <td>{{order.quantity}}</td>
+            <td>{{order.amount}}</td>
+            <td>{{order.status}}</td>
+        </tr>
+    </tbody>
+</table>
