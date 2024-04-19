@@ -84,5 +84,9 @@ http://localhost:8083/api/addItems
 
 ==> master -> Initial project setup
 
-==> Integrated with Oracle11g
+==> phase_1 -> Integrated with Oracle11g
+
+==> phase_2 -> Integrated with Angular16
+
+==> phase_3 -> Angular CRUD
 
