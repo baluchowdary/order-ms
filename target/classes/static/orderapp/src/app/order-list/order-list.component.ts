@@ -9,18 +9,26 @@ import { OrderService } from '../order.service';
 })
 export class OrderListComponent implements OnInit{
 
-  orders!: Order[];
+  orders: Order[] = [];
 
   constructor(private orderService: OrderService){ }
 
   ngOnInit(): void {
+    console.log("OrderListComponent.ngOnInit()");
     this.getOrders();
   }
 
   private getOrders(){
+    console.log("OrderListComponent.getOrders()");
     this.orderService.getOrderList().subscribe(data => {
       this.orders =data;
     });
+  }
+
+  deleteOrder(id: number){
+    this.orderService.deleteOrder(id).subscribe(data =>{
+      this.getOrders();
+    })
   }
 
 }

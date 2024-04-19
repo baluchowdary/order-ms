@@ -5,16 +5,20 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { OrderListComponent } from './order-list/order-list.component';
 import { HttpClientModule } from '@angular/common/http';
+import { CreateOrderComponent } from './create-order/create-order.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
-    OrderListComponent
+    OrderListComponent,
+    CreateOrderComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -8,7 +8,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,31 +38,58 @@ public class OrderController {
 	
 	private static final String NEW_ORDER_TOPIC ="new-order";
 	
-	@PostMapping("/orders")
-	public void createOrder(@RequestBody CustomerOrder customerOrder) {
+	/*
+	 * @PostMapping("/createOrders") public void createOrder(@RequestBody
+	 * CustomerOrder customerOrder) { log.info("CreateOrder -- Method Start");
+	 * log.debug("customerOrder :::::" + customerOrder.getItem()); Order order = new
+	 * Order(); order.setAmount(customerOrder.getAmount());
+	 * order.setItem(customerOrder.getItem());
+	 * order.setQuantity(customerOrder.getQuantity()); order.setStatus("CREATED");
+	 * log.debug("Order status:::: "+order.getStatus()); try { order =
+	 * repository.save(order);
+	 * 
+	 * customerOrder.setOrderId(order.getId()); OrderEvent orderEvent = new
+	 * OrderEvent(); orderEvent.setOrder(customerOrder);
+	 * orderEvent.setType("ORDER_CREATED"); log.debug("OrderEvent ::: "+
+	 * orderEvent); kafkaTemplate.send(NEW_ORDER_TOPIC, orderEvent);
+	 * 
+	 * log.info("CreateOrder -- Method End"); } catch (Exception e) {
+	 * order.setStatus("FAILED"); order = repository.save(order); } }
+	 */
+	
+
+	@PostMapping("/createOrders")
+	public ResponseEntity<CustomerOrder> createOrder(@RequestBody CustomerOrder customerOrder) {
 		log.info("CreateOrder -- Method Start");
-		Order order = new Order();	
+		Order order = new Order();
 		order.setAmount(customerOrder.getAmount());
 		order.setItem(customerOrder.getItem());
 		order.setQuantity(customerOrder.getQuantity());
 		order.setStatus("CREATED");
-		log.debug("Order status:::: "+order.getStatus());
+		
+		log.debug("Order status:::: " + order.getStatus());
 		try {
 			order = repository.save(order);
-			
+
 			customerOrder.setOrderId(order.getId());
 			OrderEvent orderEvent = new OrderEvent();
 			orderEvent.setOrder(customerOrder);
 			orderEvent.setType("ORDER_CREATED");
-			log.debug("OrderEvent ::: "+ orderEvent);
-			kafkaTemplate.send(NEW_ORDER_TOPIC, orderEvent);
 			
-			log.info("CreateOrder -- Method End");	
+			log.debug("OrderEvent ::: " + orderEvent);
+			kafkaTemplate.send(NEW_ORDER_TOPIC, orderEvent);
+
+			log.info("CreateOrder -- Method End");
 		} catch (Exception e) {
+			//log.error(e.getMessage());
 			order.setStatus("FAILED");
 			order = repository.save(order);
 		}
-	} //end
+		return new ResponseEntity<CustomerOrder>(HttpStatus.CREATED);
+		
+	}
+
+	
 	
 	@GetMapping("/getOrderDetails")
 	public ResponseEntity<List<Order>> getOrderDetails(){
@@ -81,5 +110,20 @@ public class OrderController {
 		}
 	}
 	
+	@DeleteMapping("/{id}")
+	public ResponseEntity<HttpStatus> deleteOrderDetails(@PathVariable("id") long orderid) {
+		log.info("OrderController - deleteOrderDetails method start");
+		
+		try {
+			
+			repository.deleteById(orderid);
+			log.info("OrderController - deleteOrderDetails deleted");
+			
+			return new ResponseEntity<>(HttpStatus.OK);
+		} catch (Exception e) {
+			log.error("OrderController - deleteOrderDetails - Error :: " +e.getMessage()); 
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 }
 	

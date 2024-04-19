@@ -6,6 +6,7 @@
             <th>Order_Quantity</th>
             <th>Order_Amount</th>
             <th>Order_Status</th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
@@ -14,6 +15,9 @@
             <td>{{order.quantity}}</td>
             <td>{{order.amount}}</td>
             <td>{{order.status}}</td>
+            <td>
+                <button (click) = "deleteOrder(order.id)" class="btn btn-danger" style="margin-left: 10px">Delete</button>
+            </td>
         </tr>
     </tbody>
 </table>

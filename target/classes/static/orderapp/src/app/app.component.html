@@ -1,4 +1,22 @@
+<nav class="navbar navbar-expand-sm bg-secondary navbar-dark">
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a routerLink="orders" routerLinkActive="active" class="nav-link"> Order List</a>
+        </li>
+        <li class="nav-item">
+            <a routerLink="createOrders" routerLinkActive="active" class="nav-link"> Create Orders</a>
+        </li>
+    </ul>
+</nav>
+
 <h2 class="text-center">{{title}}</h2>
 <div class="container">
-    <app-order-list></app-order-list>
+    <!-- <app-order-list></app-order-list> -->
+    <router-outlet></router-outlet>
 </div>
+
+<footer class="footer">
+    <div class="container">
+        <span>All rights reserved 2024 @kollu</span>
+    </div>
+</footer>
