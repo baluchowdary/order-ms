@@ -82,7 +82,7 @@ http://localhost:8083/api/addItems
 
 =====> Branch's
 
-==> master -> Initial project setup
+==> master -> Initial project setup and Integrated with Kafka
 
 ==> phase_1 -> Integrated with Oracle11g
 
